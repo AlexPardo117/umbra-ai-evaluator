@@ -1,4 +1,4 @@
-name: Onyx DevOps AI CI/CD Pipeline
+name: Umbra AI Evaluator CI/CD Pipeline
 
 on:
   push:
@@ -33,13 +33,12 @@ jobs:
       run: |
         radon cc app/ -a -json > cc_report.json
 
-    - name: Ejecución del Evaluación con Agente IA
-      run: |
-        python scripts/ai_metrics_eval.py
+    - name: Ejecución de Evaluación con Agente IA
+      run: python scripts/ai_evaluator.py
 
     - name: Construcción de Imagen Docker
       run: |
-        docker build -t onyx-devops-api:${{ github.sha }} .
+        docker build -t umbra-ai-evaluator:${{ github.sha }} .
 
     - name: Mostrar Salida de Métricas y Artefactos
       run: |
